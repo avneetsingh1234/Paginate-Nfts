@@ -1,15 +1,15 @@
-import Head from 'next/head';
-import styles from '../styles/Home.module.css';
-import { Metaplex } from '@metaplex-foundation/js';
-import { clusterApiUrl, Connection, PublicKey } from '@solana/web3.js';
-import { useEffect, useState } from 'react';
+import Head from "next/head";
+import styles from "../styles/Home.module.css";
+import { Metaplex } from "@metaplex-foundation/js";
+import { clusterApiUrl, Connection, PublicKey } from "@solana/web3.js";
+import { useEffect, useState } from "react";
 
-const connection = new Connection(clusterApiUrl('mainnet-beta'));
+const connection = new Connection(clusterApiUrl("mainnet-beta"));
 const mx = Metaplex.make(connection);
 
 export default function Home() {
   const [address, setAddress] = useState(
-    'Geh5Ss5knQGym81toYGXDbH3MFU2JCMK7E4QyeBHor1b',
+    "Geh5Ss5knQGym81toYGXDbH3MFU2JCMK7E4QyeBHor1b"
   );
 
   const [nftList, setNftList] = useState(null);
@@ -58,7 +58,7 @@ export default function Home() {
 
   const changeCurrentPage = (operation) => {
     setLoading(true);
-    if (operation === 'next') {
+    if (operation === "next") {
       setCurrentPage((prevValue) => prevValue + 1);
     } else {
       setCurrentPage((prevValue) => (prevValue > 1 ? prevValue - 1 : 1));
@@ -94,7 +94,7 @@ export default function Home() {
                 <h1>{nft.name}</h1>
                 <img
                   className={styles.nftImage}
-                  src={nft.metadata.image || '/fallbackImage.jpg'}
+                  src={nft.metadata.image || "/fallbackImage.jpg"}
                   alt="The downloaded illustration of the provided NFT address."
                 />
               </div>
@@ -105,14 +105,16 @@ export default function Home() {
               <button
                 disabled={currentPage === 1}
                 className={styles.styledButton}
-                onClick={() => changeCurrentPage('prev')}
+                onClick={() => changeCurrentPage("prev")}
               >
                 Prev Page
               </button>
               <button
-                disabled={nftList && Math.ceil(nftList.length / perPage) === currentPage}
+                disabled={
+                  nftList && Math.ceil(nftList.length / perPage) === currentPage
+                }
                 className={styles.styledButton}
-                onClick={() => changeCurrentPage('next')}
+                onClick={() => changeCurrentPage("next")}
               >
                 Next Page
               </button>
